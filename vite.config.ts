@@ -24,7 +24,15 @@ export default defineConfig({
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'js-runtime-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 },
+              expiration: { maxEntries: 150, maxAgeSeconds: 30 * 24 * 60 * 60 },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/gravatar\.com\/avatar\/.*/, // 运行时缓存 res 资源
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'res-cache',
+              expiration: { maxEntries: 150, maxAgeSeconds: 30 * 24 * 60 * 60 }, // 缓存 30 天
             },
           },
         ],

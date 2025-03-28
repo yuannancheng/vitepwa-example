@@ -33,6 +33,11 @@ const version = ref('0.0.22')
   <ToggleHashRoute />
 
   <ReloadPrompt />
+
+  <div>
+    <span>运行时资源测试：</span>
+    <img style="width: 52px;" src="https://gravatar.com/avatar/e2e8100b129b73e4beb21e6bebd4bf84?size=52" alt="">
+  </div>
 </template>
 
 <style scoped></style>
