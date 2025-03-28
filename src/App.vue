@@ -22,7 +22,7 @@ onMounted(() => {
   }
 })
 
-const version = ref('0.0.11')
+const version = ref('0.0.22')
 </script>
 
 <template>

@@ -75,8 +75,30 @@ const setUpdateInterval = () => {
   })
 }
 
+// 激活已有的 Service Worker
+const activateServiceWorker = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker?.getRegistration().then((registration) => {
+      if (registration?.waiting) {
+        console.info('激活已有的 Service Worker')
+
+        // 监听 controllerchange 事件
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          console.log('新的 Service Worker 已接管控制权')
+          window.location.reload() // 立即刷新激活新 SW
+        })
+
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' })
+      }
+    })
+  }
+}
+
 export const setupServicesWorker = () => {
   setupManifest()
 
   setUpdateInterval()
+
+  // 激活已有的 Service Worker
+  activateServiceWorker()
 }
